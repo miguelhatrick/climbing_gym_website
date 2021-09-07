@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_membership_sidebar" name="Membership sidebar status" inherit_id="portal.portal_layout">
+        <xpath expr="//div[@id='o_my_sidebar']" position="inside">
+
+            <t t-set="membership" t-value="user_id.partner_id.climbing_gym_main_member_membership_id"/>
+            <t t-set="my_partner_id" t-value="user_id.partner_id"/>
+
+            <br/>
+            <div id="o_portal_my_membership_details" class="o_portal_my_membership_details">
+                <h4>Member membership</h4>
+                <hr class="mt-1 mb-0"/>
+                <div class="o_my_membership" t-if="membership">
+                    <div>
+                        <i class="fa fa-id-card fa-fw" role="img" aria-label="Id" title="Id"/>
+                        <span itemprop="membership" t-esc="membership.name"/>
+                    </div>
+                    <div>
+                        <i class="fa fa-calendar fa-fw" role="img" aria-label="Due date" title="Due Date"/>
+                        <span itemprop="membership" t-esc="membership.current_due_date"/>
+                        -
+                        <span itemprop="membership"
+                              t-esc="list(filter(lambda x: x[0] == membership.state, membership.status_selection))[0][1]"/>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <div class="o_portal_my_medical_certificate_details">
+                <h4>Medical certificate
+                    <a role="button" href="/my/medical_certificates" class="btn btn-sm btn-link">
+                        <i class="fa fa-eye"/>View
+                    </a>
+                </h4>
+                <hr class="mt-1 mb-0"/>
+
+                <div class="o_my_medical_certificate" t-if="my_partner_id">
+                    <div>
+                        <div class="o_my_medical_certificate" t-if="not my_partner_id.climbing_gym_medical_certificate_valid">
+                            <a role="button" href="/my/medical_certificates/create" class="btn btn-sm btn-link">
+                                <i class="fa fa-plus"/>Add new certificate
+                            </a>
+                        </div>
+                        <div>
+                            <i class="fa fa-ambulance fa-fw" role="img" aria-label="Medical certificate valid"
+                               title="Medical certificate valid"/>
+
+                            <t t-if="my_partner_id.climbing_gym_medical_certificate_valid">
+                                <i class="fa fa-check-circle fa-fw" role="img" aria-label="Ok" title="Ok"/>
+                                <span>Valid</span>
+                            </t>
+                            <t t-else="">
+                                <i class="fa fa-window-close fa-fw" role="img" aria-label="Invalid" title="Invalid"/>
+                                <span>Invalid</span>
+                            </t>
+                        </div>
+
+                        <i class="fa fa-calendar fa-fw" role="img" aria-label="Medical certificate due date"
+                           title="Medical certificate due date"></i>
+                        <span itemprop="my_partner_id" t-esc="my_partner_id.climbing_gym_medical_certificate_due_date"/>
+                    </div>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>
