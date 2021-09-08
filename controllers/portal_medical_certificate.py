@@ -4,17 +4,20 @@ import datetime
 import json
 import pdb
 
+from datetime import date
 from odoo.addons.website_form.controllers.main import WebsiteForm
+from addons_custom.climbing_gym.models.medical_certificate import MedicalCertificate
 from odoo import fields, http, _
 from odoo.addons.base.models.ir_qweb_fields import nl2br
 from odoo.exceptions import AccessError, MissingError, ValidationError
 from odoo.http import request
 from odoo.addons.portal.controllers.mail import _message_post_helper
+
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager, get_records_pager
 from odoo.osv import expression
 
 
-class CustomerPortal(CustomerPortal):
+class PortalMedicalCertificate(CustomerPortal):
 
     @http.route(['/my/medical_certificates', '/my/medical_certificates/page/<int:page>'], type='http', auth="user",
                 website=True)
@@ -90,6 +93,46 @@ class CustomerPortal(CustomerPortal):
 
         return request.render("climbing_gym_website.portal_my_medical_certificate_form", values)
 
+    @http.route(['/my/medical_certificates/<int:mc_id>'], type='http', auth="public", website=True)
+    def portal_medical_certificate_page(self, mc_id, report_type=None, access_token=None, message=False, download=False, **kw):
+        try:
+            mc_sudo = self._document_check_access('climbing_gym.medical_certificate', mc_id, access_token=access_token)
+        except (AccessError, MissingError):
+            return request.redirect('/my')
+
+        if report_type in ('html', 'pdf', 'text'):
+            return self._show_report(model=mc_sudo, report_type=report_type,
+                                     report_ref='sale.action_report_saleorder',
+                                     download=download)
+
+        # use sudo to allow accessing/viewing orders for public user
+        # only if he knows the private token
+        # Log only once a day
+        if mc_sudo:
+            now = fields.Date.today().isoformat()
+            session_obj_date = request.session.get('view_medical_certificate_%s' % mc_sudo.id)
+            if isinstance(session_obj_date, date):
+                session_obj_date = session_obj_date.isoformat()
+            if session_obj_date != now and request.env.user.share and access_token:
+                request.session['view_medical_certificate_%s' % mc_sudo.id] = now
+                body = _('Medical certificate viewed by customer')
+                _message_post_helper(res_model='climbing_gym.medical_certificate', res_id=mc_sudo.id, message=body,
+                                     token=mc_sudo.access_token, message_type='notification', subtype="mail.mt_note",
+                                     partner_ids=mc_sudo.user_id.sudo().partner_id.ids)
+
+        values = {
+            'medical_certificate': mc_sudo,
+            'message': message,
+            'token': access_token,
+            'page_name': 'medical_certificates',
+            'return_url': '/my/medical_certificates',
+            'bootstrap_formatting': True,
+            'partner_id': mc_sudo.partner_id.id,
+            'report_type': 'html',
+        }
+        return request.render('climbing_gym_website.medical_certificate_portal_template', values)
+
+
 
 class CustomerPortalForm(WebsiteForm):
     @http.route('/website_form/shop.climbing_gym.medical_certificate', type='http', auth="public", methods=['POST'],
@@ -107,7 +150,7 @@ class CustomerPortalForm(WebsiteForm):
         except ValidationError as e:
             return json.dumps({'error_fields': e.args[0]})
 
-        _medicalCertificate = request.env['climbing_gym.medical_certificate']
+        _medicalCertificate: MedicalCertificate = request.env['climbing_gym.medical_certificate']
 
         _mc = _medicalCertificate.sudo().create({
             'partner_id': partner.id,
@@ -116,6 +159,8 @@ class CustomerPortalForm(WebsiteForm):
             'doctor_license': kwargs['doctor_license']
         }
         )
+
+        _mc.message_subscribe(partner_ids=[partner.id])
 
         # TODO: Add ticket or email here . It's better to use chatter
         if data['custom']:
@@ -138,3 +183,5 @@ class CustomerPortalForm(WebsiteForm):
             _mc.attachment_ids = [(4, _id.id)]
 
         return json.dumps({'id': _mc.id})
+
+

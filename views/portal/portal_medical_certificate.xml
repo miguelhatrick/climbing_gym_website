@@ -7,10 +7,10 @@
             <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
                 <li t-if="page_name == 'medical_certificates'"
                     t-attf-class="breadcrumb-item #{'active ' if not medical_certificate else ''}">
-                    <a t-if="medical_certificates or page_operation == 'add'"
-                       t-attf-href="/my/medical_certificates?{{ keep_query() }}">Medical certificates
+                    <a t-attf-href="/my/medical_certificates?{{ keep_query() }}">
+                        <t t-if="medical_certificates or page_operation == 'add'">Medical certificates</t>
+                        <t t-else="">Medical certificate</t>
                     </a>
-                    <t t-else="">Medical certificate</t>
                 </li>
 
                 <li t-if="page_operation == 'add'"
@@ -20,6 +20,8 @@
                 <li t-if="medical_certificate" class="breadcrumb-item active">
                     <t t-esc="medical_certificate.name"/>
                 </li>
+
+
             </xpath>
         </template>
 
@@ -40,7 +42,6 @@
                     </div>
                 </form>
 
-
                 <t t-if="not medical_certificates">
                     <p>There are currently no certificates.</p>
                 </t>
@@ -57,7 +58,7 @@
                     <t t-foreach="medical_certificates" t-as="medical_certificate">
                         <tr>
                             <td class="text-right">
-                                <a t-attf-href="{{ medical_certificate.get_web_url() }}">
+                                <a t-attf-href="{{ medical_certificate.get_portal_url() }}">
                                     <span t-field="medical_certificate.name"/>
                                 </a>
                             </td>
@@ -115,7 +116,6 @@
                     <t t-set="title">Add medical certificate</t>
                 </t>
 
-
                 <form action="/website_form/"
                       method="post"
                       data-model_name="climbing_gym.medical_certificate"
@@ -162,11 +162,156 @@
                         </div>
                     </div>
                 </form>
-
             </t>
-
         </template>
 
+
+        <!-- Complete page of the medical_certificate -->
+        <template id="medical_certificate_portal_template" name="Medical Certificate Portal Template"
+                  inherit_id="portal.portal_sidebar" primary="True">
+            <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+
+                <div class="row mt16 o_portal_sale_sidebar">
+                    <!-- Sidebar -->
+                    <t t-call="portal.portal_record_sidebar">
+                        <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+
+                        <t t-set="title">
+                            <h2 class="mb-0">
+                                <b t-field="medical_certificate.state" data-id="state"/>
+                            </h2>
+                        </t>
+                        <t t-set="entries">
+                            <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+
+                                <li class="navspy list-group-item pl-0 flex-grow-1" t-ignore="true"
+                                    role="complementary">
+                                    <ul class="nav flex-column bs-sidenav"></ul>
+                                </li>
+
+                                <li t-if="medical_certificate.create_uid" class="list-group-item flex-grow-1">
+                                    <div class="small mb-1">
+                                        <strong class="text-muted">Your Contact</strong>
+                                    </div>
+                                    <div class="row flex-nowrap">
+                                        <div class="col flex-grow-0 pr-2">
+                                            <img class="rounded-circle mr4 float-left o_portal_contact_img"
+                                                 t-if="medical_certificate.create_uid.image"
+                                                 t-att-src="image_data_uri(medical_certificate.create_uid.image)"
+                                                 alt="Contact"/>
+                                            <img class="rounded-circle mr4 float-left o_portal_contact_img"
+                                                 t-if="not medical_certificate.create_uid.image"
+                                                 src="/web/static/src/img/placeholder.png" alt="Contact"/>
+                                        </div>
+                                        <div class="col pl-0" style="min-width: 150px">
+                                            <span t-field="medical_certificate.create_uid"
+                                                  t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
+                                            <a href="#discussion" class="small">
+                                                <i class="fa fa-comment"></i>
+                                                Send message
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </t>
+                    </t>
+
+                    <!-- Page content -->
+                    <div id="quote_content" class="col-12 col-lg justify-content-end">
+
+                        <div t-if="medical_certificate.state == 'cancel'"
+                             class="alert alert-danger alert-dismissable d-print-none" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">&amp;times;
+                            </button>
+                            <strong>This medical certificate has been cancelled.</strong>
+                            <a role="button" href="#discussion">
+                                <i class="fa fa-comment"/>
+                                Contact us.
+                            </a>
+                        </div>
+
+                        <div t-if="medical_certificate.state == 'pending'"
+                             class="alert alert-warning alert-dismissable d-print-none" role="status">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">&amp;times;
+                            </button>
+                            <strong>This medical certificate is pending approval.</strong>
+                        </div>
+
+                        <!-- main content -->
+                        <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}">
+                            <div t-call="climbing_gym_website.medical_certificate_portal_content"/>
+                        </div>
+
+                        <!-- chatter -->
+                        <div id="medical_certificate_communication" class="mt-4">
+                            <h2>Communication</h2>
+                            <t t-call="portal.message_thread">
+                                <t t-set="object" t-value="medical_certificate"/>
+                            </t>
+                        </div>
+                    </div><!-- // #quote_content -->
+                </div>
+            </xpath>
+        </template>
+
+
+        <template id="medical_certificate_portal_content" name="Medical Certificate Portal Content">
+            <!-- Intro -->
+            <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+                <h2 class="my-0">
+                    Medical certificate
+                    <em t-esc="medical_certificate.name"/>
+                </h2>
+            </div>
+
+            <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+                <!-- Informations -->
+                <div id="informations">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <strong class="d-block mb-1">Status</strong>
+                            <span t-field="medical_certificate.state"/>
+                        </div>
+                    </div>
+                </div>
+
+                <section id="details" style="page-break-inside: auto;" class="mt32">
+                    <h3 id="details">Details</h3>
+                    <div class="mb-3">
+                        <strong>Issue date:</strong>
+                        <span t-field="medical_certificate.issue_date" t-options='{"widget": "date"}'/>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Due date:</strong>
+                        <span t-field="medical_certificate.issue_date" t-options='{"widget": "date"}'/>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Doctor:</strong>
+                        <span t-field="medical_certificate.doctor_name"/>
+                        - License:
+                        <span t-field="medical_certificate.doctor_license"/>
+                    </div>
+
+
+                    <t t-foreach="medical_certificate.attachment_ids" t-as="attachment">
+                        <a t-attf-href="/web/content/#{attachment.id}?download=true" target="_blank">
+                            <div class='oe_attachment_embedded o_image' t-att-title="attachment.name"
+                                 t-att-data-mimetype="attachment.mimetype"
+                                 t-attf-data-src="/web/image/#{attachment.id}/100x80"/>
+                            <div class='oe_attachment_name'>
+                                <t t-raw='attachment.name'/>
+                            </div>
+                        </a>
+                    </t>
+
+                </section>
+
+            </div>
+        </template>
 
     </data>
 </odoo>
