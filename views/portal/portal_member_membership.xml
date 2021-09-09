@@ -155,6 +155,17 @@
                     <!-- Page content -->
                     <div id="quote_content" class="col-12 col-lg justify-content-end">
 
+                        <div t-if="member_membership.state == 'overdue'"
+                             class="alert alert-danger alert-dismissable d-print-none" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">&amp;times;
+                            </button>
+                            <strong>This member membership is overdue. Please pay as soon as possible</strong>
+                            <a role="button" href="#discussion">
+                                <i class="fa fa-comment"/>
+                                Contact us.
+                            </a>
+                        </div>
+
                         <div t-if="member_membership.state == 'cancel'"
                              class="alert alert-danger alert-dismissable d-print-none" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="close">&amp;times;
@@ -185,6 +196,11 @@
                             <div t-call="climbing_gym_website.member_membership_portal_content"/>
                         </div>
 
+                        <!-- payment content -->
+                        <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}">
+                            <div t-call="climbing_gym_website.member_membership_portal_content_payments"/>
+                        </div>
+
                         <!-- chatter -->
                         <div id="member_membership_communication" class="mt-4">
                             <h2>Communication</h2>
@@ -210,39 +226,46 @@
             <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
                 <!-- Informations -->
                 <div id="informations">
-                    <div class="mb-3">
-                        <strong>Status</strong>
-                        <span t-field="member_membership.state"/>
-                    </div>
-                    <div class="mb-3">
-                        <strong>Due date:</strong>
-                        <span t-field="member_membership.current_due_date" t-options='{"widget": "date"}'/>
-                    </div>
+                     <h3 class="my-0">
+                         <strong>Status:</strong>
+                          <em> <span t-field="member_membership.state"/></em>
+                     </h3>
+                     <h3 class="my-0">
+                         <strong>Due date:</strong>
+                         <em> <span t-field="member_membership.current_due_date" t-options='{"widget": "date"}'/></em>
+                     </h3>
                 </div>
 
                 <section id="details" style="page-break-inside: auto;" class="mt32">
                     <h3 id="details">Details</h3>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Membership type:</strong>
                         <span t-field="member_membership.membership_id.name"/>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Start date:</strong>
                         <span t-field="member_membership.membership_start_date" t-options='{"widget": "date"}'/>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Due date used as base in new system :</strong>
                         <span t-field="member_membership.initial_due_date" t-options='{"widget": "date"}'/>
                     </div>
-
-
                 </section>
-                <section id="payments" style="page-break-inside: auto;" class="mt32">
-                    <h3 id="payments">Payments</h3>
+            </div>
+        </template>
 
+
+        <template id="member_membership_portal_content_payments" name="Member Membership Portal Content Payments">
+            <!-- Intro -->
+            <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+                <h2 class="my-0">Payments</h2>
+            </div>
+
+            <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+                <section id="payments" style="page-break-inside: auto;" class="mt32">
                     <t t-if="member_membership.mmp_ids" t-call="portal.portal_table">
                         <thead>
                             <tr class="active">
@@ -263,9 +286,9 @@
                                     <span t-field="mmp.name"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="mmp.sale_order_line"/>
+                                    <span t-if="mmp.sale_order_line" t-esc="str(mmp.sale_order_line.name)[:15]"/>
                                     -
-                                    <span t-field="mmp.pos_order_line"/>
+                                    <span t-if="mmp.pos_order_line" t-esc="str(mmp.pos_order_line.name)[:15]"/>
                                 </td>
                                 <td class="text-right">
                                     <span t-field="mmp.interval_length"/>
