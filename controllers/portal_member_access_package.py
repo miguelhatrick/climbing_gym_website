@@ -55,7 +55,7 @@ class CustomerPortal(CustomerPortal):
         values.update({
             'date': date_begin,
             'member_access_packages': member_access_packages.sudo(),
-            'page_name': 'Member access packages',
+            'page_name': 'member_access_packages',
             'pager': pager,
             'archive_groups': archive_groups,
             'default_url': '/my/member_access_packages',
