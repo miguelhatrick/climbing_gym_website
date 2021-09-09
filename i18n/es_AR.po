@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 17:37+0000\n"
-"PO-Revision-Date: 2021-09-09 14:40-0300\n"
+"POT-Creation-Date: 2021-09-09 22:05+0000\n"
+"PO-Revision-Date: 2021-09-09 19:06-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgid "<i class=\"fa fa-eye\"/>View"
 msgstr "<i class=\"fa fa-eye\"/>Ver"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_medical_certificates
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_member_memberships
@@ -118,7 +118,7 @@ msgstr ""
 "                                    Cancelado"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_medical_certificates
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_member_memberships
@@ -133,7 +133,7 @@ msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Pending\" role
 msgstr "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Pendiente\" role=\"img\"/>"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"draft\" role=\"img\"/>"
 msgstr ""
 
@@ -164,7 +164,6 @@ msgstr "<span id=\"submit\" class=\"o_website_form_send btn btn-primary btn-lg\"
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.medical_certificate_portal_content
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
 msgid "<strong class=\"d-block mb-1\">Status</strong>"
 msgstr "<strong class=\"d-block mb-1\">Estado</strong>"
 
@@ -261,6 +260,7 @@ msgid "<strong>Start start / finish:</strong>"
 msgstr "<strong>Fecha de inicio / fin:</strong>"
 
 #. module: climbing_gym_website
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content
 msgid "<strong>Status:</strong>"
 msgstr "<strong>Estado:</strong>"
@@ -359,7 +359,7 @@ msgid "Available seats:"
 msgstr "Lugares disponibles:"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 msgid "Begin"
 msgstr "Inicio"
 
@@ -408,7 +408,7 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
 msgid "Created"
 msgstr "Creado"
@@ -486,7 +486,7 @@ msgid "Doctor name"
 msgstr "Nombre del médico"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 msgid "End"
 msgstr "Fin"
 
@@ -496,7 +496,7 @@ msgid "End:"
 msgstr "Fin:"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 msgid "Event"
 msgstr "Evento"
 
@@ -683,7 +683,7 @@ msgid "Registration for this event is now closed"
 msgstr "El registro a este evento está ahora cerrado"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_reservations
 msgid "Reservations"
 msgstr "Reservas"
@@ -692,7 +692,7 @@ msgstr "Reservas"
 #: code:addons/climbing_gym_website/controllers/portal_reservation.py:27
 #, python-format
 msgid "Reserve Date"
-msgstr "Fecha de reserva"
+msgstr ""
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
@@ -745,7 +745,7 @@ msgid "Start:"
 msgstr "Inicio:"
 
 #. module: climbing_gym_website
-#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_access_package_portal_content_reservations
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_medical_certificates
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_member_access_packages

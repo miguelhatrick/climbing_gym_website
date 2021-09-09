@@ -160,6 +160,11 @@
                             <div t-call="climbing_gym_website.member_access_package_portal_content"/>
                         </div>
 
+                        <!-- reserves content -->
+                        <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}">
+                            <div t-call="climbing_gym_website.member_access_package_portal_content_reservations"/>
+                        </div>
+
                         <!-- chatter -->
                         <div id="member_access_package_communication" class="mt-4">
                             <h2>Communication</h2>
@@ -184,49 +189,42 @@
 
             <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
                 <!-- Informations -->
-                <div id="informations">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <strong class="d-block mb-1">Status</strong>
-                            <span t-field="member_access_package.state"/>
-                        </div>
-                    </div>
+                <div id="informations">
+                    <h3 class="my-0">
+                        <strong>Status:</strong>
+                        <em t-field="member_access_package.state"/>
+                    </h3>
+                    <h3 class="my-0">
+                        <strong>Remaining credits:</strong>
+                        <em>
+                            <span t-field="member_access_package.remaining_credits"/>
+                        </em>
+                    </h3>
                 </div>
 
                 <section id="details" style="page-break-inside: auto;" class="mt32">
                     <h3 id="details">Details</h3>
-
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Total credits:</strong>
                         <span t-field="member_access_package.access_credits"/>
                     </div>
-
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Access Package:</strong>
                         <span t-field="member_access_package.access_package.name"/>
                         /
                         <span t-field="member_access_package.access_package.description"/>
                     </div>
-
-
-                    <div class="mb-3">
-                        <strong>Remaining credits:</strong>
-                        <span t-field="member_access_package.remaining_credits"/>
-                    </div>
-
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Duration:</strong>
                         <span t-field="member_access_package.days_duration"/>
                     </div>
-
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <strong>Start start / finish:</strong>
                         <span t-field="member_access_package.date_start" t-options='{"widget": "date"}'/>
                         /
                         <span t-field="member_access_package.date_finish" t-options='{"widget": "date"}'/>
                     </div>
-
                     <div class="mb-3">
                         <strong>Web Order / POS Order:</strong>
                         <span t-field="member_access_package.sale_order_line"/>
@@ -234,11 +232,19 @@
                         <span t-field="member_access_package.pos_order_line"/>
                     </div>
                 </section>
-                <section id="payments" style="page-break-inside: auto;" class="mt32">
-                    <h3 id="payments">Reservations</h3>
+            </div>
+        </template>
 
 
-                    <t t-if="member_access_package.event_registrations" t-call="portal.portal_table">
+        <template id="member_access_package_portal_content_reservations"
+                  name="Member access package Portal Content reservations">
+            <!-- Intro -->
+            <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+                <h2 class="my-0">Reservations</h2>
+            </div>
+            <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+                <section id="reserves" style="page-break-inside: auto;" class="mt32">
+                     <t t-if="member_access_package.event_registrations" t-call="portal.portal_table">
                         <thead>
                             <tr class="active">
                                 <th class="text-right">Created</th>
@@ -263,7 +269,6 @@
                                     <span t-field="mmp.event_id.date_end"/>
                                 </td>
                                 <td class="text-center">
-
                                     <t t-if="mmp.state == 'cancel'">
                                         <span class="badge badge-pill badge-danger">
                                             <i class="fa fa-fw fa-times" aria-label="Paid" title="Active"
@@ -293,16 +298,12 @@
                                         </span>
                                     </t>
                                 </td>
-
                             </tr>
                         </t>
                     </t>
-
                 </section>
-
             </div>
         </template>
-
 
     </data>
 </odoo>
