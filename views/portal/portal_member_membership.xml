@@ -68,7 +68,7 @@
 
                                 <t t-if="mm.state == 'cancel'">
                                     <span class="badge badge-pill badge-danger">
-                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Active" role="img"></i>
+                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Active" role="img"/>
                                         <span class="d-none d-md-inline">
                                             <span t-field="mm.state"/>
                                         </span>
@@ -76,7 +76,7 @@
                                 </t>
                                 <t t-if="mm.state == 'pending' or mm.state == 'overdue'">
                                     <span class="badge badge-pill badge-warning">
-                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Pending" role="img"></i>
+                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Pending" role="img"/>
                                         <span class="d-none d-md-inline">
                                             <span t-field="mm.state"/>
                                         </span>
@@ -85,7 +85,7 @@
 
                                 <t t-if="mm.state == 'active'">
                                     <span class="badge badge-pill badge-success">
-                                        <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"></i>
+                                        <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"/>
                                         <span class="d-none d-md-inline">
                                             <span t-field="mm.state"/>
                                         </span>
@@ -142,7 +142,7 @@
                                             <span t-field="member_membership.create_uid"
                                                   t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
                                             <a href="#discussion" class="small">
-                                                <i class="fa fa-comment"></i>
+                                                <i class="fa fa-comment"/>
                                                 Send message
                                             </a>
                                         </div>
@@ -210,12 +210,13 @@
             <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
                 <!-- Informations -->
                 <div id="informations">
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <strong class="d-block mb-1">Status</strong>
-                            <span t-field="member_membership.state"/>
-                        </div>
+                    <div class="mb-3">
+                        <strong>Status</strong>
+                        <span t-field="member_membership.state"/>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Due date:</strong>
+                        <span t-field="member_membership.current_due_date" t-options='{"widget": "date"}'/>
                     </div>
                 </div>
 
@@ -236,6 +237,8 @@
                         <strong>Due date used as base in new system :</strong>
                         <span t-field="member_membership.initial_due_date" t-options='{"widget": "date"}'/>
                     </div>
+
+
                 </section>
                 <section id="payments" style="page-break-inside: auto;" class="mt32">
                     <h3 id="payments">Payments</h3>
