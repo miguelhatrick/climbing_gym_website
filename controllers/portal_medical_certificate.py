@@ -150,7 +150,7 @@ class CustomerPortalForm(WebsiteForm):
         except ValidationError as e:
             return json.dumps({'error_fields': e.args[0]})
 
-        _medicalCertificate: MedicalCertificate = request.env['climbing_gym.medical_certificate']
+        _medicalCertificate = request.env['climbing_gym.medical_certificate']
 
         _mc = _medicalCertificate.sudo().create({
             'partner_id': partner.id,
