@@ -26,8 +26,7 @@ class RequireLoginToRegister(WebsiteEventController):
         # pdb.set_trace()
         if public_user and event.website_require_login:
             return request.env['ir.ui.view'].render_template(
-                'climbing_gym'
-                '.modal_attendees_registration_login_required', {
+                'climbing_gym_website.modal_attendees_registration_login_required', {
                     'event_url': event.website_url,
                 })
         elif not public_user and event.website_require_login:
@@ -37,8 +36,7 @@ class RequireLoginToRegister(WebsiteEventController):
             if event_registration.search_count([('partner_id', '=', _member.id), ('event_id', '=', event.id),
                                                 ('state', 'in', ['open', 'done'])]) > 0:
                 return request.env['ir.ui.view'].render_template(
-                    'climbing_gym'
-                    '.modal_attendees_registration_already_registered', {
+                    'climbing_gym_website.modal_attendees_registration_already_registered', {
                         'event_url': event.website_url,
                     })
 
@@ -46,8 +44,7 @@ class RequireLoginToRegister(WebsiteEventController):
             _map = request.env['climbing_gym.member_access_package']
             if not _map.get_first_available(_member, event.address_id):
                 return request.env['ir.ui.view'].render_template(
-                    'climbing_gym'
-                    '.modal_attendees_registration_credits_required', {
+                    'climbing_gym_website.modal_attendees_registration_credits_required', {
                         'event_url': event.website_url,
                     })
 
@@ -63,7 +60,7 @@ class RequireLoginToRegister(WebsiteEventController):
 
                 tickets = [tickets[0]]
 
-                return request.env['ir.ui.view'].render_template("climbing_gym.registration_attendee_details",
+                return request.env['ir.ui.view'].render_template("climbing_gym_website.registration_attendee_details",
                                                                  {'tickets': [tickets[0]], 'event': event,
                                                                   'availability_check': event.seats_available >= 1,
                                                                   'mymember': _member})
