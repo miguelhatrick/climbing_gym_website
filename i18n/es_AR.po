@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 22:05+0000\n"
-"PO-Revision-Date: 2021-09-09 19:06-0300\n"
+"POT-Creation-Date: 2021-09-11 01:29+0000\n"
+"PO-Revision-Date: 2021-09-10 22:31-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -420,7 +420,7 @@ msgstr "Creado"
 #: code:addons/climbing_gym_website/controllers/portal_monthly_event_group.py:34
 #, python-format
 msgid "Creation date"
-msgstr "Fecha de creación"
+msgstr ""
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.modal_attendees_registration_credits_required
@@ -509,7 +509,7 @@ msgstr "Reserva de eventos"
 #: code:addons/climbing_gym_website/controllers/portal_reservation.py:26
 #, python-format
 msgid "Event date"
-msgstr "Fecha del evento"
+msgstr ""
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
@@ -692,7 +692,7 @@ msgstr "Reservas"
 #: code:addons/climbing_gym_website/controllers/portal_reservation.py:27
 #, python-format
 msgid "Reserve Date"
-msgstr ""
+msgstr "Fecha de reserva"
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
@@ -778,6 +778,11 @@ msgstr "No existen reservas aún."
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_member_memberships
 msgid "There are currently no memberships."
 msgstr "No existen membresias médicos aún."
+
+#. module: climbing_gym_website
+#: model_terms:ir.ui.view,arch_db:climbing_gym_website.product_new_error_message
+msgid "This product requires an active membership."
+msgstr "Este producto requiere una membresía activa al C.A.B.A."
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.registration_attendee_details

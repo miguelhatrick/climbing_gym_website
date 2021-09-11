@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_new_error_message" name="New error message when no membership"
+              inherit_id="website_sale.product">
+        <xpath expr="//p[@class='css_not_available_msg alert alert-warning']" position="replace">
+            <p t-if="True" class="css_not_available_msg alert alert-warning">
+                This product requires an active membership.
+            </p>
+        </xpath>
+    </template>
+</odoo>

@@ -45,6 +45,7 @@
         'views/portal/event_website_sale_templates.xml',
         'views/portal/portal_user_menu.xml',
         'views/portal/website_event_templates.xml',
+        'views/portal/website_sale_templates.xml',
 
         'data/medical_certificate_form.xml',
 

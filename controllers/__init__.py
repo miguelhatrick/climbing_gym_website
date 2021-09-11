@@ -6,4 +6,7 @@ from . import portal_member_membership
 from . import portal_monthly_event_group
 from . import portal_medical_certificate
 from . import portal_reservation
+
+# controllers extensions
 from . import website_event
+from . import product_configuration
