@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-11 15:36+0000\n"
-"PO-Revision-Date: 2021-09-11 12:37-0300\n"
+"POT-Creation-Date: 2021-09-27 14:43+0000\n"
+"PO-Revision-Date: 2021-09-27 11:45-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,9 +85,7 @@ msgstr ""
 msgid ""
 "<i class=\"fa fa-comment\"/>\n"
 "                                Contact us."
-msgstr ""
-"<i class=\"fa fa-comment\"/>\n"
-"                                Contáctenos"
+msgstr "<i class=\"fa fa-comment\"/>Contáctenos."
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_membership_sidebar
@@ -502,7 +500,7 @@ msgstr "Fin:"
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.product_new_error_message
-msgid "Este producto requiere una membresía activa al CABA."
+msgid "Este producto requiere una membresía y/o membresía activa al CABA."
 msgstr ""
 
 #. module: climbing_gym_website
@@ -702,7 +700,7 @@ msgstr "Reservas"
 #: code:addons/climbing_gym_website/controllers/portal_reservation.py:27
 #, python-format
 msgid "Reserve Date"
-msgstr "Fecha de la reserva"
+msgstr "Fecha de reserva"
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.member_membership_portal_content_payments
@@ -767,7 +765,7 @@ msgstr "Estado"
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_monthly_event_groups
 msgid "There are currently no Monthly access to climbing wall."
-msgstr "No existen registros de acceso mensual a la palestra"
+msgstr "No existen registros de acceso mensual a la palestra."
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_medical_certificates

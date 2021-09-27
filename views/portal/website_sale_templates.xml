@@ -4,7 +4,7 @@
               inherit_id="website_sale.product">
         <xpath expr="//p[@class='css_not_available_msg alert alert-warning']" position="replace">
             <p t-if="True" class="css_not_available_msg alert alert-warning">
-                Este producto requiere una membresía activa al CABA.
+                Este producto requiere una membresía y/o membresía activa al CABA.
             </p>
         </xpath>
     </template>

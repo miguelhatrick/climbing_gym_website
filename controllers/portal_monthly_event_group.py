@@ -61,13 +61,13 @@ class CustomerPortal(CustomerPortal):
 
         request.session['my_monthlyeventgroups_history'] = _monthly_event_groups.ids[:100]
 
-        test = _partner_id.climbing_gym_member_membership_membership_active
+        test = _partner_id.climbing_gym_member_membership_active
 
         values.update({
             'date': date_begin,
             'monthly_event_groups': _monthly_event_groups.sudo(),
             'cur_memberships': _member_membership_ids,
-            'active_membership': _partner_id.climbing_gym_member_membership_membership_active,
+            'active_membership': _partner_id.climbing_gym_member_membership_active,
             'cur_partner': _partner_id,
             'page_name': 'Monthly access to climbing wall',
             'pager': pager,
@@ -92,7 +92,7 @@ class CustomerPortal(CustomerPortal):
             _errors.append('Invalid monthly event group')
 
         # check if the current partner can access this
-        if not partner.climbing_gym_member_membership_membership_active:
+        if not partner.climbing_gym_member_membership_active:
             _errors.append('No active membership')
 
         if not partner.climbing_gym_medical_certificate_valid:
@@ -168,7 +168,7 @@ class CustomerPortalForm(WebsiteForm):
             _errors.append('Registration for this event is not available right now')
 
         # check if the current partner can access this
-        if not partner.climbing_gym_member_membership_membership_active:
+        if not partner.climbing_gym_member_membership_active:
             _errors.append('No active membership')
 
         if not partner.climbing_gym_medical_certificate_valid:

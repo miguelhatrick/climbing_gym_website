@@ -34,12 +34,10 @@ class RequireMembership(ProductConfiguratorController):
 
         if _product_id.climbing_gym_only_members:
             # only members
-            if _partner_id is None or _partner_id.climbing_gym_main_member_membership_id is None or len(
-                    _partner_id.climbing_gym_main_member_membership_id) == 0:
+            if _partner_id is None or not _partner_id.climbing_gym_member_membership_valid:
                 _block = True
 
-            if _product_id.climbing_gym_only_active_members and _partner_id.climbing_gym_main_member_membership_id.state not in [
-                'active']:
+            if _product_id.climbing_gym_only_active_members and not _partner_id.climbing_gym_member_membership_active:
                 _block = True
 
         if _block:
