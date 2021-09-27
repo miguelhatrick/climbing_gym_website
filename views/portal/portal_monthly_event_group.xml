@@ -86,7 +86,7 @@
                                 </t>
 
 
-                                <t t-if="not cur_partner.climbing_gym_member_membership_membership_active">
+                                <t t-if="not cur_partner.climbing_gym_member_membership_active">
                                     <span class="badge badge-pill badge-danger">
                                         <i class="fa fa-fw fa-times" role="img"></i>
                                         <p>You have no active memberships</p>
@@ -106,7 +106,7 @@
                                     </span>
                                 </t>
 
-                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and
+                                <t t-if="cur_partner.climbing_gym_member_membership_active and
                                         cur_partner.climbing_gym_medical_certificate_valid and registration_available
                                         and tags_ok">
 
