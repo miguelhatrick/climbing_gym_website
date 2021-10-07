@@ -11,7 +11,7 @@
                         <t t-set="url" t-value="'/my/member_memberships'"/>
                         <t t-set="count" t-value="member_membership_count"/>
                     </t>
-                    <t t-if="medical_certificate_count" t-call="portal.portal_docs_entry">
+                    <t t-call="portal.portal_docs_entry">
                         <t t-set="title">Medical certificates</t>
                         <t t-set="url" t-value="'/my/medical_certificates'"/>
                         <t t-set="count" t-value="medical_certificate_count"/>
