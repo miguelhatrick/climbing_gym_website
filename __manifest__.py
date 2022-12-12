@@ -40,6 +40,7 @@
         'views/portal/portal_medical_certificate.xml',
         'views/portal/portal_member_access_package.xml',
         'views/portal/portal_member_membership.xml',
+        'views/portal/portal_member_membership_request.xml',
         'views/portal/portal_monthly_event_group.xml',
         'views/portal/portal_reservation.xml',
         'views/portal/event_website_sale_templates.xml',
@@ -48,6 +49,7 @@
         'views/portal/website_sale_templates.xml',
 
         'data/medical_certificate_form.xml',
+        'data/member_membership_request_form.xml'
 
     ],
     # only loaded in demonstration mode

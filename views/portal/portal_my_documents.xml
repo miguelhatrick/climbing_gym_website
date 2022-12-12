@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="portal_my_home_climbing_gym" name="Portal My Home : sales entries"
+        <template id="portal_my_home_climbing_gym" name="Portal My Home : climbing gym entries"
                   inherit_id="portal.portal_my_home"
                   priority="20">
             <xpath expr="//div[@id='oe_structure_portal_my_home_1']" position="inside">
@@ -10,6 +10,11 @@
                         <t t-set="title">Member memberships</t>
                         <t t-set="url" t-value="'/my/member_memberships'"/>
                         <t t-set="count" t-value="member_membership_count"/>
+                    </t>
+                     <t  t-call="portal.portal_docs_entry">
+                        <t t-set="title">Membership requests</t>
+                        <t t-set="url" t-value="'/my/member_membership_requests'"/>
+                        <t t-set="count" t-value="member_membership_request_count"/>
                     </t>
                     <t t-call="portal.portal_docs_entry">
                         <t t-set="title">Medical certificates</t>
@@ -31,6 +36,12 @@
                         <t t-set="url" t-value="'/my/member_access_packages'"/>
                         <t t-set="count" t-value="member_access_package_count"/>
                     </t>
+                    <t t-call="portal.portal_docs_entry">
+                        <t t-set="title">Membership request</t>
+                        <t t-set="url" t-value="'/my/member_membership_requests'"/>
+                        <t t-set="count" t-value="member_membership_request_count"/>
+                    </t>
+
                 </div>
 
             </xpath>

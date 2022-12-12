@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
 import pdb
 from datetime import date
 from odoo import fields, http, _
@@ -42,6 +41,12 @@ class CustomerPortal(CustomerPortal):
             # ('state', 'in', ['sale', 'done'])
         ])
 
+        member_membership_request = request.env['climbing_gym.member_membership_request']
+        member_membership_request_count = member_membership_request.search_count([
+            ('partner_id', 'in', [_partner.id]),
+            # ('state', 'in', ['sale', 'done'])
+        ])
+
         _monthly_event_group = request.env['climbing_gym.event_monthly_group']
         _monthly_event_group_count = _monthly_event_group.search_count([
             ('state', 'in', ['active']),
@@ -53,6 +58,7 @@ class CustomerPortal(CustomerPortal):
             'member_access_package_count': member_access_package_count,
             'medical_certificate_count': medical_certificate_count,
             'member_membership_count': member_membership_count,
+            'member_membership_request_count': member_membership_request_count,
             'monthly_event_groups_count': _monthly_event_group_count,
         })
         return values

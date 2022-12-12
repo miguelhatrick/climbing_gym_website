@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="climbing_gym.model_climbing_gym_member_membership_request" model="ir.model">
+            <field name="website_form_access" eval="True"/>
+            <field name="website_form_label">Membership request</field>
+        </record>
+
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>climbing_gym.member_membership_request</value>
+            <value eval="[
+                'date_of_birth',
+                'obs',
+                'id_card_image'
+               ]"/>
+        </function>
+    </data>
+</odoo>

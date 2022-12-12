@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
 import json
 from operator import itemgetter
 
@@ -26,9 +25,8 @@ class CustomerPortal(CustomerPortal):
 
         _monthlyEventGroup = request.env['climbing_gym.event_monthly_group']
 
-        domain = [
-            ('state', 'in', ['active', 'closed'])
-        ]
+        # TODO: Filter here and order so only the newest 5 appear
+        domain = [('state', 'in', ['active', 'closed'])]
 
         searchbar_sortings = {
             'date': {'label': _('Creation date'), 'order': 'create_date desc'},
@@ -85,9 +83,10 @@ class CustomerPortal(CustomerPortal):
         partner = request.env.user.partner_id
         _errors = []
 
-        _monthlyEventGroup = request.env['climbing_gym.event_monthly_group']
-        _monthlyEventGroup_id = request.env['climbing_gym.event_monthly_group'].search([('id', '=', group_id)])
+        _MonthlyEventGroup = request.env['climbing_gym.event_monthly_group']
+        _monthlyEventGroup_id = _MonthlyEventGroup.search([('id', '=', group_id)])
 
+        # TODO: extract to GetErrors
         if not _monthlyEventGroup_id or len(_monthlyEventGroup_id) == 0:
             _errors.append('Invalid monthly event group')
 
@@ -139,15 +138,16 @@ class CustomerPortalForm(WebsiteForm):
     def website_form_event_monthly_group(self, **kwargs):
         partner = request.env.user.partner_id
 
-        _eventMonthlyGroup = request.env['climbing_gym.event_monthly_group'].sudo()
         _eventMonthly = request.env['climbing_gym.event_monthly'].sudo()
+        _eventMonthlyGroup = request.env['climbing_gym.event_monthly_group'].sudo()
         _eventMonthlyContent = request.env['climbing_gym.event_monthly_content'].sudo()
 
         _eventMonthlyGroup_id = _eventMonthlyGroup.search([('id', '=', kwargs['event_group_id'])])
 
         _tempIds = {k: v for k, v in kwargs.items() if k.startswith('emshift')}.values()
         _eventMonthly_ids = _eventMonthly.search(
-            [('id', 'in', list(_tempIds)), ('event_monthly_group_id', 'in', _eventMonthlyGroup_id.ids),
+            [('id', 'in', list(_tempIds)),
+             ('event_monthly_group_id', 'in', _eventMonthlyGroup_id.ids),
              ('event_type', 'in', ['public'])])
 
         _weekend_count = len(_eventMonthly_ids.filtered(lambda pm: pm.weekday.id in [6, 7]))
@@ -155,6 +155,7 @@ class CustomerPortalForm(WebsiteForm):
 
         _errors = []
 
+        # TODO: extract to GetErrors
         # perform checks
         if not _eventMonthlyGroup_id or len(_eventMonthlyGroup_id) == 0:
             _errors.append('Invalid monthly event group')

@@ -653,7 +653,7 @@ msgstr "Afiliados"
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_home_climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_monthly_event_groups
 msgid "Monthly access to climbing wall"
-msgstr "Acceso mensual a palestra"
+msgstr "Acceso mensual"
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_monthly_event_groups
@@ -765,7 +765,7 @@ msgstr "Estado"
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_monthly_event_groups
 msgid "There are currently no Monthly access to climbing wall."
-msgstr "No existen registros de acceso mensual a la palestra."
+msgstr "No existen registros de acceso mensual."
 
 #. module: climbing_gym_website
 #: model_terms:ir.ui.view,arch_db:climbing_gym_website.portal_my_medical_certificates
