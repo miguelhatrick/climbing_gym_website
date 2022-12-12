@@ -59,7 +59,7 @@ class CustomerPortal(CustomerPortal):
             'member_access_package_count': member_access_package_count,
             'medical_certificate_count': medical_certificate_count,
             'member_membership_count': member_membership_count,
-            'member_membership_request_count': member_membership_request_count,
+            # 'member_membership_request_count': member_membership_request_count,
             'monthly_event_groups_count': _monthly_event_group_count,
         })
         return values
