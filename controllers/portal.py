@@ -41,6 +41,7 @@ class CustomerPortal(CustomerPortal):
             # ('state', 'in', ['sale', 'done'])
         ])
 
+        # TODO: REMOVE THIS FROM HERE
         member_membership_request = request.env['climbing_gym.member_membership_request']
         member_membership_request_count = member_membership_request.search_count([
             ('partner_id', 'in', [_partner.id]),
