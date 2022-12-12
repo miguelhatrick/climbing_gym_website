@@ -42,11 +42,11 @@ class CustomerPortal(CustomerPortal):
         ])
 
         # TODO: REMOVE THIS FROM HERE
-        member_membership_request = request.env['climbing_gym.member_membership_request']
-        member_membership_request_count = member_membership_request.search_count([
-            ('partner_id', 'in', [_partner.id]),
-            # ('state', 'in', ['sale', 'done'])
-        ])
+        # member_membership_request = request.env['climbing_gym.member_membership_request']
+        # member_membership_request_count = member_membership_request.search_count([
+        #     ('partner_id', 'in', [_partner.id]),
+        #     # ('state', 'in', ['sale', 'done'])
+        # ])
 
         _monthly_event_group = request.env['climbing_gym.event_monthly_group']
         _monthly_event_group_count = _monthly_event_group.search_count([
