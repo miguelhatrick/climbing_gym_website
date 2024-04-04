@@ -48,6 +48,8 @@
         'views/portal/website_event_templates.xml',
         'views/portal/website_sale_templates.xml',
 
+        'views/portal/portal_templates_extend.xml',
+
         'data/medical_certificate_form.xml',
         'data/member_membership_request_form.xml'
 

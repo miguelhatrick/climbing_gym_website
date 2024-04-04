@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <template id="my_emergency_data" name="Emergency data in my details" inherit_id="portal.portal_my_details">
+            <xpath expr="//button[@type='submit']/.." position="before">
+                <div class="clearfix"/>
+                <h3>Health insurance information</h3>
+                <div t-attf-class="form-group #{error.get('health_insurance') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label" for="name">Health insurance</label>
+                    <input type="text" name="health_insurance"
+                           t-attf-class="form-control #{error.get('health_insurance') and 'is-invalid' or ''}"
+                           t-att-value="health_insurance or partner.health_insurance"/>
+                </div>
+                <label class="col-form-label" for="name">Affiliate number</label>
+                <div t-attf-class="form-group #{error.get('health_insurance_number') and 'o_has_error' or ''} col-xl-6">
+                    <input type="text" name="health_insurance_number"
+                           t-attf-class="form-control #{error.get('health_insurance_number') and 'is-invalid' or ''}"
+                           t-att-value="health_insurance_number or partner.health_insurance_number"/>
+                </div>
+                <label class="col-form-label" for="name">Emergency phone number</label>
+                <div t-attf-class="form-group #{error.get('health_insurance_emergency_phone') and 'o_has_error' or ''} col-xl-6">
+                    <input type="text" name="health_insurance_emergency_phone"
+                           t-attf-class="form-control #{error.get('health_insurance_emergency_phone') and 'is-invalid' or ''}"
+                           t-att-value="health_insurance_emergency_phone or partner.health_insurance_emergency_phone"/>
+                </div>
+                <div class="clearfix"/>
+                <h3>Emergency contact information</h3>
+                <div t-attf-class="form-group #{error.get('emergency_contact_name') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label" for="name">Emergency contact name</label>
+                    <input type="text" name="emergency_contact_name"
+                           t-attf-class="form-control #{error.get('emergency_contact_name') and 'is-invalid' or ''}"
+                           t-att-value="emergency_contact_name or partner.emergency_contact_name"/>
+                </div>
+
+                <div t-attf-class="form-group #{error.get('emergency_contact_relationship') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label" for="name">Relation</label>
+                    <input type="text" name="emergency_contact_relationship"
+                           t-attf-class="form-control #{error.get('emergency_contact_relationship') and 'is-invalid' or ''}"
+                           t-att-value="emergency_contact_relationship or partner.emergency_contact_relationship"/>
+                </div>
+
+                <div t-attf-class="form-group #{error.get('emergency_contact_phone') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label" for="name">Contact phone number</label>
+                    <input type="text" name="emergency_contact_phone"
+                           t-attf-class="form-control #{error.get('emergency_contact_phone') and 'is-invalid' or ''}"
+                           t-att-value="emergency_contact_phone or partner.emergency_contact_phone"/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
