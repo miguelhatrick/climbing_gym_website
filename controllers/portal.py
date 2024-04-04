@@ -1,27 +1,10 @@
 # -*- coding: utf-8 -*-
-import pdb
-from datetime import date
-from odoo import fields, http, _
-from odoo.exceptions import AccessError, MissingError
+from odoo.addons.portal.controllers.portal import CustomerPortal
+
 from odoo.http import request
-from odoo.addons.portal.controllers.mail import _message_post_helper
-from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager, get_records_pager
-from odoo.osv import expression
 
 
 class CustomerPortal(CustomerPortal):
-
-    HEALTH_FIELDS = [
-        "health_insurance" ,
-        "health_insurance_number" ,
-        "health_insurance_emergency_phone",
-        "emergency_contact_name" ,
-        "emergency_contact_relationship",
-        "emergency_contact_phone",
-    ]
-    def __init__(self):
-        self.OPTIONAL_BILLING_FIELDS = super(CustomerPortal, self).OPTIONAL_BILLING_FIELDS
-        self.OPTIONAL_BILLING_FIELDS.extend(self.HEALTH_FIELDS)
 
     def _prepare_portal_layout_values(self):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()

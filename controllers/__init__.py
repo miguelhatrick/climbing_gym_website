@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from . import customer_portal
 from . import portal
 from . import portal_member_access_package
 from . import portal_member_membership
