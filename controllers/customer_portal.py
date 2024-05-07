@@ -12,6 +12,7 @@ from odoo.osv import expression
 class CustomerPortalClimbingGym(CustomerPortal):
 
     OPTIONAL_HEALTH_FIELDS = [
+        "birthdate_date" ,
         "health_insurance" ,
         "health_insurance_number" ,
         "health_insurance_emergency_phone",

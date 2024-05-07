@@ -44,6 +44,14 @@
                            t-attf-class="form-control #{error.get('emergency_contact_phone') and 'is-invalid' or ''}"
                            t-att-value="emergency_contact_phone or partner.emergency_contact_phone"/>
                 </div>
+
+                <h3>Personal</h3>
+                <div t-attf-class="form-group #{error.get('birthdate_date') and 'o_has_error' or ''} col-xl-6">
+                    <label class="col-form-label" for="name">Birthdate</label>
+                    <input type="date" name="birthdate_date"
+                           t-attf-class="form-control o_website_form_input o_website_form_date #{error.get('birthdate_date') and 'is-invalid' or ''}"
+                           t-att-value="birthdate_date or partner.birthdate_date"/>
+                </div>
             </xpath>
         </template>
     </data>
